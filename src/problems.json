@@ -1,0 +1,19 @@
+    [{
+        "id": 1,
+        "question": "Can data be passed from parent to child?",
+        "answer": true,
+        "activeQuestion": true
+      },
+      {
+        "id": 2,
+        "question": "Can data be passed from child to parent?",
+        "answer": true,
+        "activeQuestion": false
+      },
+      {
+        "id": 3,
+        "question": "In vue js, props are needed to have a fully functional component",
+        "answer": false,
+        "activeQuestion": false
+      }
+    ]

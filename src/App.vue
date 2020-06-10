@@ -1,28 +1,63 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app class="app">
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+      <v-icon name="brands/vuejs" color="white" scale="3" />
+    </v-app-bar>
+    <v-content class="gameboardSection">
+      <Gameboard  @updateGameStatus="updateGameStatus"/>
+    </v-content>
+    <v-footer
+      class="footer"
+      color="blue"
+      height="60"
+      fixed
+     >
+     <div>Question #{{question}} of {{totalQuestions}}</div>
+     <div>Your current score: {{currentScore}}</div>
+    </v-footer>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Gameboard from './components/Gameboard';
+import Icon from 'vue-awesome/components/Icon'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    Gameboard,
+    'v-icon': Icon
+  },
+  data() {
+    return {
+      answer: false,
+      question: 1,
+      currentScore: 0,
+      totalQuestions: 20,
+    }
+  },
+  methods: {
+      updateGameStatus(payload) {
+        this.currentScore = payload.currentScore
+        this.question = payload.question
+        this.answer = payload.answer
+      }
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.gameboardSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
 }
 </style>
